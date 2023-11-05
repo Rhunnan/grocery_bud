@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import List from './List';
 import { ToastContainer, toast } from 'react-toastify';
   import 'react-toastify/dist/ReactToastify.css';
 
@@ -26,11 +27,7 @@ function App() {
   const [list, setList] = useState<ListItem[]>(getLocalStorage());
   const [isEditing, setIsEditing] = useState<boolean>(false);
   const [editID, setEditID] = useState<string | null>(null);
-  const [alert, setAlert] = useState<{ show: boolean; msg: string; type: string }>({
-    show: false,
-    msg: '',
-    type: '',
-  });
+  
   const notifyEmpty = () => toast.warning("Please Enter a Value");
   const notifyAdded = () => toast.success("Successfuly Added");
   const notifyEditSucc = () => toast.success("Successfuly Edited");
@@ -117,7 +114,7 @@ function App() {
       </form>
       {list.length > 0 && (
         <div className='grocery-container'>
-          {/* <List items={list} removeItem={removeItem} editItem={editItem} /> still planning how to add my List Component*/}
+          <List items={list} removeItem={removeItem} editItem={editItem} />
           <button className='clear-btn' onClick={clearList}>
             clear items
           </button>
