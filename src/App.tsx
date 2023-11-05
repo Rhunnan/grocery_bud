@@ -26,7 +26,11 @@ function App() {
   const [list, setList] = useState<ListItem[]>(getLocalStorage());
   const [isEditing, setIsEditing] = useState<boolean>(false);
   const [editID, setEditID] = useState<string | null>(null);
- 
+  const [alert, setAlert] = useState<{ show: boolean; msg: string; type: string }>({
+    show: false,
+    msg: '',
+    type: '',
+  });
   const notifyEmpty = () => toast.warning("Please Enter a Value");
   const notifyAdded = () => toast.success("Successfuly Added");
   const notifyEditSucc = () => toast.success("Successfuly Edited");
@@ -61,14 +65,13 @@ function App() {
     }
   };
 
+ 
 
   const clearList = (): void => {
-    toast.success('Cleared All Items'); // Show a success toast
  setList([]);
   };
 
   const removeItem = (id: string): void => {
-
     notifyRemove();
     setList((prevList) => prevList.filter((item) => item.id !== id));
   };
@@ -114,7 +117,7 @@ function App() {
       </form>
       {list.length > 0 && (
         <div className='grocery-container'>
-          {/* <List items={list} removeItem={removeItem} editItem={editItem} /> still planning to make this component*/} 
+          {/* <List items={list} removeItem={removeItem} editItem={editItem} /> still planning how to add my List Component*/}
           <button className='clear-btn' onClick={clearList}>
             clear items
           </button>
